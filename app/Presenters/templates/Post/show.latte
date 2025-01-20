@@ -58,10 +58,6 @@
 
 <p><a class="btn btn-outline-primary" n:href="Home:default">← zpět na výpis příspěvků</a></p>
 
-<a class="btn btn-danger" n:href="deletePost! $post->id" n:if="$user->isLoggedIn() && ($user->id == $post->user_id || $user->isInRole('admin'))">Smazat příspěvek</a>
-&nbsp;
-<a class="btn btn-warning" n:href="Edit:edit $post->id" n:if="$user->isLoggedIn() && ($user->id == $post->user_id || $user->isInRole('admin'))">Upravit příspěvek</a>
-
 
 <h1 n:block="title">{$post->title}</h1>
 
@@ -89,17 +85,6 @@
 {if (!$user->isLoggedIn()) || ($post->status == "CLOSED") && (!$user->isLoggedIn())}
     <p>Pro přidávání komentářů se přihlašte zde: <a n:href="Sign:in">Přihlásit</a></p>
 {/if}
-
-<div class="comments">
-    {foreach $comments as $comment}
-        <a class="btn btn-danger" n:href="deleteComment! $comment->id" n:if="$user->isLoggedIn() && ($user->id == $comment->user_id || $user->isInRole('admin'))">Smazat Komentář</a>
-        <a class="btn btn-warning" n:href="editComment, commentId => $comment->id" n:if="$user->isLoggedIn() && ($user->id == $comment->user_id || $user->isInRole('admin'))">Upravit komentář</a>
-        <p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
-            {$comment->name}
-        </a></b> napsal: {$comment->content}</p><br><br>
-    {/foreach}
-</div>
-
 
 
 

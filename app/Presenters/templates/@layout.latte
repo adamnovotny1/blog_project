@@ -52,14 +52,6 @@
 
 <ul class="navig">
     <li><a n:href="Home:">Články</a></li>
-    {if $user->isInRole('admin')}
-        <li><a n:href="Dashboard:">Správa uživatelů</a></li>
-    {/if}
-    {if $user->isLoggedIn()}
-        <li><a n:href="Sign:out">Odhlásit se</a></li>
-    {else}
-        <li><a n:href="Sign:in">Přihlásit se</a></li>
-    {/if}
 </ul>
 
 {include content}

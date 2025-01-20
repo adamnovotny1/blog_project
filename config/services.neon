@@ -8,8 +8,5 @@ search:
 
 services:
 	- App\Router\RouterFactory::createRouter
-	- App\Model\UserFacade
 	- App\Forms\FormFactory
-	- App\Forms\SignInFormFactory
-	- App\Forms\SignUpFormFactory
 

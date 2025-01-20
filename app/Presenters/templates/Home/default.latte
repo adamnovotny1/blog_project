@@ -1,16 +1,5 @@
 {extends ../@layout.latte}
 
-{block navigation}
-    <ul class="navig">
-        {if $user->isInRole('admin')}
-            <li><a n:href="Dashboard:">Správa uživatelů</a></li>
-        {/if}
-        {if $user->isLoggedIn()}
-            <li><a n:href="Sign:out">Odhlásit se</a></li>
-        {/if}
-    </ul>
-{/block}
-
 {block content}
 <style>
 h1 {
@@ -24,19 +13,7 @@ h2 a {
 }
 </style>
     <h1>Reportáže Závodů F1</h1>
-    {if $user->isInRole('admin')}
-        <p>Jsi role Admin</p>
-    {elseif $user->isInRole('user')}
-        <p>Jsi role User</p>
-    {else}
-        <p>Nemáš roli - jsi pouze návštěvník</p>
-    {/if}
-
-    {if $user->isLoggedIn()}
     <p><a class="btn btn-primary" n:href="Edit:create">Vytvořit příspěvek</a></p>
-    {elseif !$user->isLoggedIn()}
-    <p>Pro přidávání příspěvků se přihlašte zde: <a n:href="Sign:in">Přihlásit</a></p>
-    {/if}
 
     <div n:foreach="$posts as $post" class="post">
         {if (($post->status == "OPEN" || $post->status == "CLOSED") || ($post->status == "ARCHIVED" && $user->isLoggedIn()))}
