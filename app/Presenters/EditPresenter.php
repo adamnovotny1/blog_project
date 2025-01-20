@@ -21,18 +21,6 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $this->error('Post not found');
         return;
     }
-
-    $userId = $this->getUser()->getId();
-    $userRole = $this->getUser()->getRoles();
-
-    if (!$this->getUser()->isLoggedIn() || $post->user_id !== $userId && !in_array('admin', $userRole)) {
-        $this->flashMessage('Nemáš oprávnění upravovat tento příspěvek.');
-        $this->redirect('Home:');
-        return;
-    }
-
-    // If the user is authorized, set the form defaults and continue with the edit
-    $this->getComponent('postForm')->setDefaults($post->toArray());
 }
 
 public function actionCreate(): void
@@ -107,7 +95,5 @@ public function renderEdit(int $postId): void
         $this->error('Post not found');
     }
 
-$this->getComponent('postForm')->setDefaults($post->toArray());
 }
-
 }

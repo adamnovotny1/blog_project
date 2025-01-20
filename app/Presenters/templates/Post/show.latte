@@ -61,30 +61,13 @@
 
 <h1 n:block="title">{$post->title}</h1>
 
-<p class="post"><b>Status Příspěvku: </b>{$post->status}<br><b>Datum Vytvoření: </b>{$post->created_at|date:'F j, Y'}<br><b>Zhlédnutí: </b>{$post->views}</p>
-
 {if $post->image}
     <img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}" style="height: 400px; width: auto;">
     <br>
-<a class="btn btn-danger" n:href="deleteImage! $post->id" n:if="$user->isLoggedIn() && ($user->id == $post->user_id || $user->isInRole('admin'))">Smazat obrázek</a>
 {/if}
 <br>
 <br>
 <div class="post">{$post->content}</div>
-
-{if ($post->status == "OPEN") && ($user->isLoggedIn())}
-    <h2>Komentáře</h2>
-    {control commentForm}
-{/if}
-
-{if ($post->status == "CLOSED") && ($user->isLoggedIn())}
-    <h2>Komentáře</h2>
-    {control commentForm}
-{/if}
-
-{if (!$user->isLoggedIn()) || ($post->status == "CLOSED") && (!$user->isLoggedIn())}
-    <p>Pro přidávání komentářů se přihlašte zde: <a n:href="Sign:in">Přihlásit</a></p>
-{/if}
 
 
 
