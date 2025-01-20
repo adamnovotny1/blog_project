@@ -109,4 +109,5 @@ public function renderEdit(int $postId): void
 
 $this->getComponent('postForm')->setDefaults($post->toArray());
 }
+
 }
