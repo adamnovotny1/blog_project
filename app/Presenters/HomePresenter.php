@@ -30,4 +30,5 @@ final class HomePresenter extends Nette\Application\UI\Presenter
 		// a také samotný Paginator pro zobrazení možností stránkování
 		$this->template->paginator = $paginator;
 	}
+    
 }
