@@ -1,0 +1,75 @@
+{extends ../@layout.latte}
+
+{block navigation}
+    <ul class="navig">
+        {if $user->isInRole('admin')}
+            <li><a n:href="Dashboard:">Správa uživatelů</a></li>
+        {/if}
+        {if $user->isLoggedIn()}
+            <li><a n:href="Sign:out">Odhlásit se</a></li>
+        {/if}
+    </ul>
+{/block}
+
+{block content}
+<style>
+h1 {
+    font-family: 'Roboto', sans-serif; /* Change to your chosen font */
+    margin-top: 7px;
+}
+
+h2 a {
+    font-family: 'Roboto', sans-serif; /* Change to your chosen font */
+    text-decoration: none; 
+}
+</style>
+    <h1>Reportáže Závodů F1</h1>
+    {if $user->isInRole('admin')}
+        <p>Jsi role Admin</p>
+    {elseif $user->isInRole('user')}
+        <p>Jsi role User</p>
+    {else}
+        <p>Nemáš roli - jsi pouze návštěvník</p>
+    {/if}
+
+    {if $user->isLoggedIn()}
+    <p><a class="btn btn-primary" n:href="Edit:create">Vytvořit příspěvek</a></p>
+    {elseif !$user->isLoggedIn()}
+    <p>Pro přidávání příspěvků se přihlašte zde: <a n:href="Sign:in">Přihlásit</a></p>
+    {/if}
+
+    <div n:foreach="$posts as $post" class="post">
+        {if (($post->status == "OPEN" || $post->status == "CLOSED") || ($post->status == "ARCHIVED" && $user->isLoggedIn()))}
+            <h2><a href="{link Post:show $post->id}">{$post->title}</a></h2>
+            <b>Zhlédnutí: </b>{$post->views}
+            <div class="date"><b>Datum Vytvoření: </b>{$post->created_at|date:'F j, Y'}</div>
+            <br>
+            {if $post->image}
+                <img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}" style="width: 400px; height: auto">
+                <br><br>
+            {/if}
+        {/if}
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {if !$paginator->isFirst()}
+                <li class="page-item"><a class="page-link" n:href="default, 1">První</a></li>
+                <li class="page-item"><a class="page-link" n:href="default, $paginator->page-1">Předchozí</a></li>
+            {/if}
+
+            <li class="page-item disabled"><a class="page-link" href="#">Stránka {$paginator->getPage()} z {$paginator->getPageCount()}</a></li>
+
+            {if !$paginator->isLast()}
+                <li class="page-item"><a class="page-link" n:href="default, $paginator->getPage() + 1">Další</a></li>
+                <li class="page-item"><a class="page-link" n:href="default, $paginator->getPageCount()">Poslední</a></li>
+            {/if}
+        </ul>
+    </nav>
+{/block}
+
+
+
+
+
+
+

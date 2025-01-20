@@ -1,0 +1,38 @@
+{block content}
+<style>
+    .message-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        font-size: 16px;
+        color: #666;
+    }
+
+    a {
+        color: #0275d8;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="message-container">
+    <h1 n:block="title">Byli jste odhlášeni</h1>
+    <p><a n:href="in">Přihlašte se k jinému účtu</a></p>
+    <p><a n:href="Home:">Přejít na výpis příspěvků</a></p>
+</div>
+{/block}
