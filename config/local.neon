@@ -1,0 +1,7 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=blog_system'
+	user: 'root'
+	password: 'root'
