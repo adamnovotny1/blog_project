@@ -1,0 +1,75 @@
+{extends ../@layout.latte}
+
+{block content}
+<style>
+    /* General body styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4; /* Light grey background for the page */
+        color: #333; /* Dark grey text color */
+        margin: 0;
+        padding: 10px;
+    }
+
+    /* Styling for the post header */
+    h1 {
+        color: #0275d8; /* Blue color for headers */
+        font-size: 32px; /* Font size for headers */
+        font-family: 'Roboto', sans-serif; /* Change to your chosen font */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .post, .comments {
+        background-color: #fff; /* White background for sections */
+        border: 1px solid #ddd; /* Light gray border */
+        padding: 20px; /* Increased padding inside sections for more space */
+        margin-top: 10px; /* Space between sections */
+        line-height: 1.6; /* Improved line spacing for better readability */
+    }
+
+    .post {
+        margin-bottom: 14px;
+    }
+
+    .comments {
+        margin-top:20px;
+    }
+
+    .comments a {
+        margin-bottom: 10px;
+    }
+
+    img {
+        margin-bottom: 10px;
+    }
+
+    p b a {
+        text-decoration: none;
+    }
+
+    p a {
+        margin-top: 7px;
+    }
+
+
+
+</style>
+
+<p><a class="btn btn-outline-primary" n:href="Home:default">← zpět na výpis příspěvků</a></p>
+
+
+<h1 n:block="title">{$post->title}</h1>
+
+{if $post->image}
+    <img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}" style="height: 400px; width: auto;">
+    <br>
+{/if}
+<br>
+<br>
+<div class="post">{$post->content}</div>
+
+
+
+
+
